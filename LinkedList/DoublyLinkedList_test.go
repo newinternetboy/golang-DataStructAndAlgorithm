@@ -43,7 +43,7 @@ func TestDoubleLinkedList_InsertPrev(t *testing.T) {
 	}
 
 	head := list.GetHead()
-	hr   := list.InsertPrev(head, 3)
+	hr := list.InsertPrev(head, 3)
 	if hr == false || list.GetHead().element != 3 {
 		t.Fail()
 	}
@@ -55,14 +55,14 @@ func TestDoubleLinkedList_RemoveNode(t *testing.T) {
 	list.Append(2)
 
 	head := list.GetHead()
-	rhead:= list.RemoveNode(head)
+	rhead := list.RemoveNode(head)
 	if rhead != 1 {
 		t.Fail()
 	}
 
 	list.Append(3)
 	tail := list.GetTail()
-	rtail:= list.RemoveNode(tail)
+	rtail := list.RemoveNode(tail)
 	if rtail != 3 {
 		t.Fail()
 	}
@@ -70,7 +70,7 @@ func TestDoubleLinkedList_RemoveNode(t *testing.T) {
 	list.Append(3)
 	list.Append(4)
 	mNode := list.GetHead().next
-	rm    := list.RemoveNode(mNode)
+	rm := list.RemoveNode(mNode)
 	if rm != 3 {
 		t.Fail()
 	}
@@ -86,4 +86,3 @@ func TestDoubleLinkedList_Search(t *testing.T) {
 		t.Fail()
 	}
 }
-
