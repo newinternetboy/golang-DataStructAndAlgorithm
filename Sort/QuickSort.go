@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: Caoxiang
+ * @Date: 2020-10-19 14:30:38
+ * @LastEditors: Caoxiang
+ * @LastEditTime: 2020-11-02 14:52:28
+ */
 package Sort
 
 func QuickSort(params []int) []int {
@@ -14,7 +21,7 @@ func quickSort(params []int, low, high int) {
 }
 
 func partionSort(params []int, low, high int) int {
-	//基准存储是因为先左找小于基准值，并复制给低位，这样就会覆盖之前的基准值
+	//基准存储是因为先右找小于基准值，并复制给低位，这样就会覆盖之前的基准值
 	tmp := params[low]
 	for low < high {
 		for low < high && params[high] >= tmp {
