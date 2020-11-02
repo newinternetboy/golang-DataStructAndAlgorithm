@@ -3,7 +3,7 @@
  * @Author: Caoxiang
  * @Date: 2020-10-19 14:30:38
  * @LastEditors: Caoxiang
- * @LastEditTime: 2020-11-02 14:52:28
+ * @LastEditTime: 2020-11-02 15:29:23
  */
 package Sort
 
@@ -33,6 +33,26 @@ func partionSort(params []int, low, high int) int {
 			low++
 		}
 		//将低位大于基准值的移动到高位
+		params[high] = params[low]
+	}
+	params[low] = tmp
+	return low
+}
+
+func partionSortV2(params []int, low, high int) int {
+	tmp := params[low]
+	//一次分组完成待排序列的分离
+	for low < high {
+		//先右,找第一个小于tmp的值下标
+		for low < high && params[high] >= tmp {
+			high--
+		}
+		//将找到小于基准值的放在低位
+		params[low] = params[high]
+		//后左,找第一个大于tmp的值下标
+		for low < high && params[low] <= tmp {
+			low++
+		}
 		params[high] = params[low]
 	}
 	params[low] = tmp
