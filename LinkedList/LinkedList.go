@@ -1,4 +1,5 @@
 package LinkedList
+
 //单链表
 //当尾结点指向头结点就是单向循环链表
 //define node
@@ -20,7 +21,7 @@ func (list *LinkedList) InitList(params []int) {
 }
 
 //Insert First(Linklist implement InsertFirst)
-func (list *LinkedList) InsertFirst(i int){
+func (list *LinkedList) InsertFirst(i int) {
 	//Init Insert Node
 	data := &Node{data: i}
 	if list.head != nil {
@@ -30,7 +31,7 @@ func (list *LinkedList) InsertFirst(i int){
 }
 
 //Insert Last
-func (list *LinkedList) InsertLast(i int)  {
+func (list *LinkedList) InsertLast(i int) {
 	dataNode := &Node{data: i}
 	if list.head == nil {
 		list.head = dataNode
@@ -90,7 +91,7 @@ func (list *LinkedList) RemoveByIndex(i int) bool {
 }
 
 //Search Value
-func (list *LinkedList) SearchValue(i int) bool  {
+func (list *LinkedList) SearchValue(i int) bool {
 	current := list.head
 	for current != nil {
 		if current.data == i {
@@ -111,7 +112,7 @@ func (list *LinkedList) GetFirst() (int, bool) {
 }
 
 //Get Last
-func (list *LinkedList) GetLast() (int, bool)  {
+func (list *LinkedList) GetLast() (int, bool) {
 	if list.head == nil {
 		return 0, false
 	}
@@ -123,7 +124,7 @@ func (list *LinkedList) GetLast() (int, bool)  {
 }
 
 //Get Size
-func (list *LinkedList) GetSize() int  {
+func (list *LinkedList) GetSize() int {
 	size := 0
 	current := list.head
 	for current != nil {
@@ -134,7 +135,7 @@ func (list *LinkedList) GetSize() int  {
 }
 
 //Get Items
-func (list *LinkedList) GetItems() []int  {
+func (list *LinkedList) GetItems() []int {
 	var items []int
 	if list.head == nil {
 		return items
@@ -147,3 +148,22 @@ func (list *LinkedList) GetItems() []int  {
 	return items
 }
 
+/**
+ * @description: 单链表反转
+ * @param {*}
+ * @return {*}
+ */
+func (list *Node) LinkedRevert() *Node {
+	//双指针
+	cur := list
+	var pre *Node
+	for cur != nil {
+		tmp := cur.next
+		//指针反转
+		cur.next = pre
+		//双指针更新
+		pre = cur
+		cur = tmp
+	}
+	return pre
+}

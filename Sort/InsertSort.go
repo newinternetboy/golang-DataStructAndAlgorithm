@@ -9,6 +9,7 @@ func InsertSort(params []int) []int {
 	for i := 1; i < n; i++ {
 		tmp = params[i]
 		j := i - 1
+		//将tmp插入[0,i-1]有序列表中
 		for j >= 0 && tmp < params[j] {
 			params[j+1] = params[j]
 			j--
