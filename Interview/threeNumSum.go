@@ -28,7 +28,9 @@ func (s *Sli) Len() int {
 }
 
 func main() {
-	res := threeNumSum()
+	// res := threeNumSum()
+	num := []int{-1, 0, 1, 2, -1, -4}
+	res := threeSum(num)
 	fmt.Println(res)
 }
 
@@ -66,6 +68,41 @@ func threeNumSum() [][3]int {
 				left++
 			} else {
 				right--
+			}
+		}
+	}
+	return res
+}
+
+func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
+	var res [][]int
+	length := len(nums)
+	if length < 3 {
+		return res
+	}
+	for i, v := range nums {
+		left := i + 1
+		right := length - 1
+		//之后和前面的重复了，就跳过
+		if i > 0 && nums[i-1] == v {
+			continue
+		}
+		for left < right {
+			if nums[right]+nums[left]+v == 0 {
+				res = append(res, []int{v, nums[left], nums[right]})
+				for left < right && nums[left+1] == nums[left] {
+					left++
+				}
+				for left < right && nums[right-1] == nums[right] {
+					right--
+				}
+				left++
+				right--
+			} else if nums[right]+nums[left]+v > 0 {
+				right--
+			} else {
+				left++
 			}
 		}
 	}
