@@ -63,15 +63,19 @@ func CreateTree(bt *BinaryTree, list *ListStack) *BinaryTree {
 
 	//判断下一个元素插入到左右子节点中的哪一个
 	//左小右大
-	next := list.list.Front()
+Loop:
+	next := list.list.Back()
 	if next != nil {
-		nextstring := list.list.Front().Value.(string)
+		nextstring := list.list.Back().Value.(string)
 		nextdata, err := strconv.Atoi(nextstring)
 		v, err := strconv.Atoi(fmt.Sprint(firstEle))
 		if err == nil {
 			if v == nextdata {
-				list.Pop()
-			} else if v < nextdata {
+				list.list.Remove(next)
+				goto Loop
+			}
+
+			if v < nextdata {
 				bt.left = CreateTree(bt.left, list)
 			} else {
 				bt.right = CreateTree(bt.right, list)
@@ -83,7 +87,7 @@ func CreateTree(bt *BinaryTree, list *ListStack) *BinaryTree {
 
 func main() {
 	var bt *BinaryTree
-	path := []string{"2", "1", "4", "3"}
+	path := []string{"2", "1", "1", "4", "4", "3"}
 	stack := NewStack()
 	for _, v := range path {
 		stack.Push(v)
