@@ -8,25 +8,32 @@ package main
 
 import "fmt"
 
-type Node struct {
-	Val  interface{}
-	Next *Node
-}
-
 func main() {
-	n := &Node{Val: 1, Next: &Node{Val: 2}}
-	revertedNode := n.revertLinkedList()
-	fmt.Println(revertedNode)
+	arr := []int{3, 1, 2, 6, 4, 5}
+	quickSort(arr, 0, len(arr)-1)
+	fmt.Println(arr)
 }
 
-func (n *Node) revertLinkedList() *Node {
-	if n == nil {
-		return n
+func quickSort(sortArray []int, left, right int) {
+	if left < right {
+		key := sortArray[(left+right)/2]
+		i := left
+		j := right
+
+		for {
+			for sortArray[i] < key {
+				i++
+			}
+			for sortArray[j] > key {
+				j--
+			}
+			if i >= j {
+				break
+			}
+			sortArray[i], sortArray[j] = sortArray[j], sortArray[i]
+		}
+
+		quickSort(sortArray, left, i-1)
+		quickSort(sortArray, j+1, right)
 	}
-	var pre *Node
-	cur := n
-	for cur != nil {
-		cur.Next, pre, cur = pre, cur, cur.Next
-	}
-	return pre
 }
