@@ -168,6 +168,15 @@ func (list *Node) LinkedRevert() *Node {
 	return pre
 }
 
+func (list *Node) LinkedRevertV1() *Node {
+	var pre *Node
+	cur := list
+	for cur != nil {
+		cur.next, pre, cur = pre, cur, cur.next
+	}
+	return pre
+}
+
 func (list *LinkedList) RemoveElement(val int) *LinkedList {
 	//设置虚拟头结点
 	dummyHead := &Node{}
