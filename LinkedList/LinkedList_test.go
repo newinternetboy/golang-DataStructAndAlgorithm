@@ -114,3 +114,13 @@ func TestLinkedRevert(t *testing.T) {
 		head = head.next
 	}
 }
+
+func TestLinkedRevertV1(t *testing.T) {
+	list := &Node{data: 1, next: &Node{data: 2}}
+	list = list.LinkedRevertV1()
+	cur := list
+	for cur != nil {
+		fmt.Println(cur.data)
+		cur = cur.next
+	}
+}

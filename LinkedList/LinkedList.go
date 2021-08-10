@@ -167,3 +167,28 @@ func (list *Node) LinkedRevert() *Node {
 	}
 	return pre
 }
+
+func (list *Node) LinkedRevertV1() *Node {
+	var pre *Node
+	cur := list
+	for cur != nil {
+		cur.next, pre, cur = pre, cur, cur.next
+	}
+	return pre
+}
+
+func (list *LinkedList) RemoveElement(val int) *LinkedList {
+	//设置虚拟头结点
+	dummyHead := &Node{}
+	dummyHead.next = list.head
+	cur := dummyHead
+	for cur != nil && cur.next != nil {
+		if cur.next.data == val {
+			cur.next = cur.next.next
+		} else {
+			cur = cur.next
+		}
+	}
+	list.head = dummyHead.next
+	return list
+}
